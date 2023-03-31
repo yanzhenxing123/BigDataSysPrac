@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用Graphx分析伴生网络-可视化展示</title>
+    <script src="/static/echarts.min.js"></script>
+</head>
+<body>
+<div id="main" style="width: 800px;height:400px;"></div>
+    <script type="text/javascript">
+            // 基于准备好的dom，初始化 echarts 实例并绘制图表。
+            var myChart=echarts.init(document.getElementById('main'));
+            // 指定图表的配置项和数据
+            var option = {
+                title: {
+                    text: '网络主要主题的频率直方图',
+                    x:'center'
+                },
+                tooltip: {},
+                xAxis: {
+                    name:"topic",
+                    type: 'category',
+                    scale: 10,
+                    axisTick: {
+                        show: true,
+                        alignWithLabel: true
+                    },
+                    axisLabel: {
+                        interval: 0,
+                        rotate: 15,
+                        textStyle: {
+                            color: '#000',
+                            fontSize: 10
+                        }
+                    },
+
+                    data:[
+                    		{% for item in items1 %}
+                            	"{{ item[0]}}",
+                        	{% endfor %}
+                       ]},
+                yAxis: {name: "cnt"},
+                series: [
+                        {
+                            name: '数量',
+                            type: 'bar',
+                            data:[{% for item in items1 %}
+                            		"{{ item[1]}}",
+                        			{% endfor %}],
+                        }
+                    ]
+                };
+            myChart.setOption(option, true);// 基于准备好的dom，初始化 echarts 实例并绘制图表。
+     </script>
+
+<div id="main2" style="width: 800px;height:400px;"></div>
+    <script type="text/javascript">
+            // 基于准备好的dom，初始化 echarts 实例并绘制图表。
+            var myChart=echarts.init(document.getElementById('main2'));
+            // 指定图表的配置项和数据
+            var option = {
+                title: {
+                    text: '最常出现的伴生二元组',
+                    x:'center'
+                },
+                tooltip: {},
+                xAxis: {
+                    name:"paris",
+                    type: 'category',
+                    scale: 10,
+                    axisTick: {
+                        show: true,
+                        alignWithLabel: true
+                    },
+                    axisLabel: {
+                        interval: 0,
+                        rotate: 15,
+                        textStyle: {
+                            color: '#000',
+                            fontSize: 10
+                        }
+                    },
+
+                    data:[
+                    		{% for item in items2 %}
+                            	"{{ item[0]}}",
+                        	{% endfor %}
+                       ]},
+                yAxis: {name: "cnt"},
+                series: [
+                        {
+                            name: '数量',
+                            type: 'bar',
+                            data:[{% for item in items2 %}
+                            		"{{ item[1]}}",
+                        			{% endfor %}],
+                        }
+                    ]
+                };
+            myChart.setOption(option, true);// 基于准备好的dom，初始化 echarts 实例并绘制图表。
+     </script>
+
+<div id="main3" style="width: 800px;height:400px;"></div>
+    <script type="text/javascript">
+            // 基于准备好的dom，初始化 echarts 实例并绘制图表。
+            var myChart=echarts.init(document.getElementById('main3'));
+            // 指定图表的配置项和数据
+            var option = {
+                title: {
+                    text: '原始图中度数最高的10个顶点',
+                    x:'center'
+                },
+                tooltip: {},
+                xAxis: {
+                    name:"topic",
+                    type: 'category',
+                    scale: 10,
+                    axisTick: {
+                        show: true,
+                        alignWithLabel: true
+                    },
+                    axisLabel: {
+                        interval: 0,
+                        rotate: 15,
+                        textStyle: {
+                            color: '#000',
+                            fontSize: 10
+                        }
+                    },
+
+                    data:[
+                    		{% for item in items3 %}
+                            	"{{ item[0]}}",
+                        	{% endfor %}
+                       ]},
+                yAxis: {name: "degree"},
+                series: [
+                        {
+                            name: '数量',
+                            type: 'bar',
+                        itemStyle:{ normal:{ color:'#4ad2ff' } },
+                            data:[{% for item in items3 %}
+                            		"{{ item[1]}}",
+                        			{% endfor %}],
+                        }
+                    ]
+                };
+            myChart.setOption(option, true);// 基于准备好的dom，初始化 echarts 实例并绘制图表。
+     </script>
+
+<div id="main4" style="width: 800px;height:400px;"></div>
+    <script type="text/javascript">
+            // 基于准备好的dom，初始化 echarts 实例并绘制图表。
+            var myChart=echarts.init(document.getElementById('main4'));
+            // 指定图表的配置项和数据
+            var option = {
+                title: {
+                    text: '过滤后图中度数最高的10个顶点',
+                    x:'center'
+                },
+                tooltip: {},
+                xAxis: {
+                    name:"topic",
+                    type: 'category',
+                    scale: 10,
+                    axisTick: {
+                        show: true,
+                        alignWithLabel: true
+                    },
+                    axisLabel: {
+                        interval: 0,
+                        rotate: 15,
+                        textStyle: {
+                            color: '#000',
+                            fontSize: 10
+                        }
+                    },
+
+                    data:[
+                    		{% for item in items4 %}
+                            	"{{ item[0]}}",
+                        	{% endfor %}
+                       ]},
+                yAxis: {name: "degree"},
+                series: [
+                        {
+                            name: '数量',
+                            type: 'bar',
+                            itemStyle:{ normal:{ color:'#4ad2ff' } },
+                            data:[{% for item in items4 %}
+                            		"{{ item[1]}}",
+                        			{% endfor %}],
+                        }
+                    ]
+                };
+            myChart.setOption(option, true);// 基于准备好的dom，初始化 echarts 实例并绘制图表。
+     </script>
+
+</body>
+</html>

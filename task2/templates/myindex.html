@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>第一个 ECharts 实例</title>
+    <!-- 引入 echarts.js -->
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+</head>
+<body>
+<div align="center">
+    <button onclick="makePie()">饼图</button>
+    <button onclick="makeBar()">柱状图</button>
+    <br><br>
+    <hr>
+</div>
+<!-- 为 ECharts 准备一个具备大小（宽高）的 Dom -->
+<div align="center">
+    <div id="main" style="width: 600px;height:400px;"></div>
+</div>
+<script type="text/javascript">
+    // 基于准备好的 dom，初始化 echarts 实例
+    var myChart = echarts.init(document.getElementById('main'));
+    //var num0="{{data0}}"
+    //var team0="{{namedata0}}"
+    //var num1="{{data1}}"
+    //var team1="{{namedata1}}"
+    //var num = "{{datalist}}"
+    //var team = "{{namelist}}"
+    option_pie = {
+        title: {
+            text: '球队历史胜场',
+            subtext: 'top5',
+            x: 'center'
+        },
+        series: [
+            {
+                name: '访问来源',
+                type: 'pie', // 设置图表类型为饼图
+                radius: '55%', // 饼图的半径，外半径为可视区尺寸（容器高宽中较小一项） 55 % 长度。
+                data: [ // 数据数组，name 为数据项名称，value 为数据项值
+                    {value: "{{num0}}", name: "{{team0}}"},
+                    {value: "{{num1}}", name: "{{team1}}"},
+                    {value: "{{num2}}", name: "{{team2}}"},
+                    {value: "{{num3}}", name: "{{team3}}"},
+                    {value: "{{num4}}", name: "{{team4}}"},
+                ]
+            }
+        ]
+
+    }
+    option_bar = {
+        title: {
+            text: '球队场均得分',
+            subtext: 'top3',
+            x: 'center'
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        xAxis: {
+            type: 'category',
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [{
+            type: 'bar',
+            data: [{value: "{{score0}}", name: "{{team_score0}}"},
+                {value: "{{score1}}", name: "{{team_score1}}"},
+                {value: "{{score2}}", name: "{{team_score2}}"},]
+        }],
+    };
+
+    function makePie() {
+        myChart.clear();
+        myChart.setOption(option_pie);//setOption 方法生成一个简单的饼状图
+    }
+
+    // 画柱状图函数，就是 setoption(pie 的配置文件)
+    function makeBar() {
+        myChart.clear();
+        myChart.setOption(option_bar);//setOption 方法生成一个简单的柱状图
+    }
+
+    // 初始化选择画饼图
+    makePie()
+</script>
+</body>
+</html>
